@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">PatioComidas</string>
+    <string name="login_titulo">Bienvenido a tu patio de comidas Virtual</string>
+    <string name="login_usuario">Usuario</string>
+    <string name="login_contraseña">Contraseña</string>
 </resources>
