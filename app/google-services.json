@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "616982212945",
+    "project_id": "patiocomidas-643a5",
+    "storage_bucket": "patiocomidas-643a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616982212945:android:9f90067162db1f18d22370",
+        "android_client_info": {
+          "package_name": "com.brasma.patiocomidas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "616982212945-ep674hl1i2dlf6nnboptev001dpk3t52.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brasma.patiocomidas",
+            "certificate_hash": "2b47a9ee951dcb57880053b87c44d2d2d2d6f60d"
+          }
+        },
+        {
+          "client_id": "616982212945-91tbgbv45r1bj0e0bns4hr837anadrg3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClrsVTPDHRkWF5HxkpcRwKHAiDECqdWdI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "616982212945-91tbgbv45r1bj0e0bns4hr837anadrg3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

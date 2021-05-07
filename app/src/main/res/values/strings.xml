@@ -5,6 +5,6 @@
     <string name="login_contraseña">Contraseña</string>
     <string name="login_Ingresar">Ingresar</string>
     <string name="login_Registrarse">Registrarse</string>
-
+    <string name="login_noLogin">no se pudo iniciar sección</string>
     <string name="login_"></string>
 </resources>
