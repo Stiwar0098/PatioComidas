@@ -3,4 +3,8 @@
     <string name="login_titulo">Bienvenido a tu patio de comidas Virtual</string>
     <string name="login_usuario">Usuario</string>
     <string name="login_contraseña">Contraseña</string>
+    <string name="login_Ingresar">Ingresar</string>
+    <string name="login_Registrarse">Registrarse</string>
+
+    <string name="login_"></string>
 </resources>
