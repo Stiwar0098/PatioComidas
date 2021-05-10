@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -27,19 +28,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     GoogleSignInClient mGoogleSignInClient;
     private SignInButton btnAccedorGoogle;
+    private Button btnRegistrarse;
     private static final int SIGN_IN_CODE=77;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         btnAccedorGoogle=(SignInButton)findViewById(R.id.btnAccederGoogle_Login);
-
+        btnRegistrarse=(Button) findViewById(R.id.btnRegistarse_Login);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         btnAccedorGoogle.setOnClickListener(this);
+        btnRegistrarse.setOnClickListener(this);
     }
 
     @Override
@@ -50,17 +53,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void updateUI(GoogleSignInAccount account) {
-        if(account==null){
-            Toast.makeText(this,"no hay usuario",Toast.LENGTH_SHORT).show();
-        }else{
-            abrirRegistro();
+        if(account!=null){
+            abrirRegistro(0);
         }
     }
 
 
-    private void abrirRegistro() {
+    private void abrirRegistro(int aux) {
         Intent intent= new Intent(this, activity_registro.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        if(aux==R.id.btnRegistarse_Login){
+            intent.putExtra("Acceso rapido",false);
+        }else{
+            intent.putExtra("Acceso rapido",true);
+        }
         startActivity(intent);
     }
 
@@ -69,6 +75,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.btnAccederGoogle_Login:
                 signIn();
+                break;
+            case R.id.btnRegistarse_Login:
+                abrirRegistro(R.id.btnRegistarse_Login);
                 break;
             // ...
         }
