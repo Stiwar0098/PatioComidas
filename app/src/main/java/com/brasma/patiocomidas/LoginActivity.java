@@ -83,23 +83,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onStart() {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(account);
+        updateUI(account,R.id.btnIngresar_Login);
     }
 
-    private void updateUI(GoogleSignInAccount account) {
+    private void updateUI(GoogleSignInAccount account, int activity) {
         if(account!=null){
-            abrirRegistro(0);
+            abrirRegistro(activity);
         }
     }
 
 
     private void abrirRegistro(int aux) {
-        Intent intent= new Intent(this, activity_registro.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent=null;
         if(aux==R.id.btnRegistarse_Login){
+            intent= new Intent(this, activity_registro.class);
             intent.putExtra("Acceso rapido",false);
-        }else{
+        }else if (aux==R.id.btnAccederGoogle_Login){//o fb
+            intent= new Intent(this, activity_registro.class);
             intent.putExtra("Acceso rapido",true);
+        }else if(aux==R.id.btnIngresar_Login){
+            intent= new Intent(this, PrincipalActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         startActivity(intent);
     }
@@ -146,12 +150,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             // Signed in successfully, show authenticated UI.
-            updateUI(account);
+            updateUI(account,R.id.btnAccederGoogle_Login);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("ERRORR", "signInResult:failed code=" + e.getStatusCode());
-            updateUI(null);
         }
     }
 }
