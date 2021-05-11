@@ -23,6 +23,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.squareup.picasso.Picasso;
 
 public class activity_registro extends AppCompatActivity implements View.OnClickListener {
 
@@ -66,7 +67,8 @@ public class activity_registro extends AppCompatActivity implements View.OnClick
             Uri personPhoto = acct.getPhotoUrl();
             try{// verificar si el correo tiene foto
                 Toast.makeText(this,personPhoto.getPath(),Toast.LENGTH_SHORT);
-                Glide.with(this).load(personPhoto).into(foto);
+                Picasso.get().load(personPhoto).into(foto);
+                //Glide.with(this).load(Uri.parse("http://goo.gl/gEgYUd")).into(foto);
             }catch (Exception a){
             }
         }

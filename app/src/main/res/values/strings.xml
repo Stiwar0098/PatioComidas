@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PatioComidas</string>
     <string name="login_titulo">Bienvenido a tu patio de comidas Virtual</string>
-    <string name="login_usuario">Usuario</string>
+    <string name="login_usuario">Correo</string>
     <string name="login_contraseña">Contraseña</string>
     <string name="login_Ingresar">Ingresar</string>
     <string name="login_Registrarse">Registrarse</string>
@@ -12,6 +12,12 @@
     <string name="Registro_celular">Celular</string>
     <string name="Registro_registrarse">Registrarse</string>
     <string name="Registro_TerminosCondiciones">Acepta nuestros Terminos y condiciones.</string>
-    <string name="Registro_"></string>
+    <string name="Principal_Buscar">Buscar</string>
+    <string name="CarviewPrincipal_Direccion">Direccion</string>
+    <string name="CarviewPrincipal_Actualmente">Actualmente</string>
+    <string name="CarviewPrincipal_VerMenu">Ver Menú</string>
+    <string name="CarviewPrincipal_Abierto">Abierto</string>
+    <string name="CarviewPrincipal_Cerrado">Cerrado</string>
+
 
 </resources>
