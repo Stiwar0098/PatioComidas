@@ -13,6 +13,7 @@
     <string name="Registro_registrarse">Registrarse</string>
     <string name="Registro_TerminosCondiciones">Acepta nuestros Terminos y condiciones.</string>
     <string name="Principal_Buscar">Buscar</string>
+    <string name="Principal_CerrarSesion">Cerrar sesión</string>
     <string name="CarviewPrincipal_Direccion">Direccion</string>
     <string name="CarviewPrincipal_Actualmente">Actualmente</string>
     <string name="CarviewPrincipal_VerMenu">Ver Menú</string>

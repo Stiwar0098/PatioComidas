@@ -3,9 +3,13 @@ package com.brasma.patiocomidas;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -71,11 +75,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 return true;
             }
         });
-        String a="hola como estas";
-        if(a.contains("co")){
-            Toast.makeText(context,"si está", Toast.LENGTH_SHORT).show();
+        permisos();
+
+    }
+
+    private void permisos() {
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
+            Toast.makeText(this,"Tiene permisos",Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(context,"no está", Toast.LENGTH_SHORT).show();
+            ActivityCompat.requestPermissions(this,new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION},1);
         }
     }
 
@@ -95,6 +105,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void abrirRegistro(int aux) {
         Intent intent=null;
+        Toast.makeText(this, "jfjfs", Toast.LENGTH_SHORT).show();
         if(aux==R.id.btnRegistarse_Login){
             intent= new Intent(this, activity_registro.class);
             intent.putExtra("Acceso rapido",false);

@@ -26,5 +26,12 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnCerrarSesion_Principal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Principal_CerrarSesion" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
