@@ -21,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.brasma.patiocomidas.entidades.Procesos;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -129,7 +130,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 abrirRegistro(R.id.btnRegistarse_Login);
                 break;
             case R.id.btnIngresar_Login:
+                Procesos.cargandoIniciar(this);
                 ingresar();
+                Procesos.cargandoDetener();
                 break;
             // ...
         }

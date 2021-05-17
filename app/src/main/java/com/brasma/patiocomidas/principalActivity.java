@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.brasma.patiocomidas.adaptadores.adapterCarviewPrincipal;
+import com.brasma.patiocomidas.entidades.Procesos;
 import com.brasma.patiocomidas.entidades.empresasCardviewPrincipal;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -29,6 +30,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.maps.android.SphericalUtil;
 
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
     private RecyclerView recyclerViewEmpresas;
     private adapterCarviewPrincipal adapterEmpresas;
     private List<empresasCardviewPrincipal> listaEmpresas;
-    private EditText txtBuscar;
+    private TextInputEditText txtBuscar;
     private Context context;
     private GoogleSignInClient mGoogleSignInClient;
     private Button btnCerrarSesion;
@@ -52,7 +54,8 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
         context=this;
-        txtBuscar=(EditText)findViewById(R.id.txtBuscar_Principal);
+        Procesos.cargandoIniciar(this);
+        txtBuscar=(TextInputEditText)findViewById(R.id.txtBuscar_Principal);
         btnCerrarSesion=(Button)findViewById(R.id.btnCerrarSesion_Principal);
 
         //cerrar sesion
@@ -83,6 +86,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         });
         btnCerrarSesion.setOnClickListener(this);
         cargarUbicacion();
+        Procesos.cargandoDetener();
     }
 
 
@@ -92,24 +96,22 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         // crear lista de carview dentro del recycleview
         recyclerViewEmpresas = (RecyclerView) findViewById(R.id.recycler_Principal);
         recyclerViewEmpresas.setLayoutManager(new LinearLayoutManager(this));
-        adapterEmpresas = new adapterCarviewPrincipal(lista,this);
+        adapterEmpresas = new adapterCarviewPrincipal(lista);
         recyclerViewEmpresas.setAdapter(adapterEmpresas);
-        adapterEmpresas.setOnClickListener(new View.OnClickListener() {
+        adapterEmpresas.setOnClickListener2(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 empresasCardviewPrincipal us = listaEmpresas.get(recyclerViewEmpresas.getChildAdapterPosition(v));
-                if(v.getId()==R.id.btnVerMenu_CarviewPrincipal){
-                    abrirMenu();
-                }
+                abrirMenu();
             }
         });
     }
 
     private void cargarListadoEmpresas() {
         listaEmpresas=new ArrayList<>();
-        listaEmpresas.add(new empresasCardviewPrincipal(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"Mi covacha","Restaurant","Av la republica y 24 de mayo",-3.4729557,-80.2371387,0.0,false,false,false,false,"restaurant",false,false,false,false,false,false,false,false,false,false,false));
-        listaEmpresas.add(new empresasCardviewPrincipal(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"cosecha","Restaurant","Av la republica y 24 de mayo",-3.4828109002677876,-80.225047217398,0.0,false,false,false,false,"restaurant",false,false,false,false,false,false,false,false,false,false,false));
-        listaEmpresas.add(new empresasCardviewPrincipal(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"Conver","Restaurant","Av la republica y 24 de mayo",-3.4729557,-80.2371387,0.0,false,false,false,false,"restaurant",false,false,false,false,false,false,false,false,false,false,false));
+        listaEmpresas.add(new empresasCardviewPrincipal(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"Mi covacha","Restaurant","Av la republica y 24 de mayo",-3.4729557,-80.2371387,0.0,"restaurant",true,true,true,true,true,true,"Huaquillas"));
+        listaEmpresas.add(new empresasCardviewPrincipal(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"cosecha","Restaurant","Av la republica y 24 de mayo",-3.4828109002677876,-80.225047217398,0.0,"quiosco",true,true,true,true,false,false,"Machala"));
+        listaEmpresas.add(new empresasCardviewPrincipal(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"Conver","Restaurant","Av la republica y 24 de mayo",-3.4729557,-80.2371387,0.0,"carpa",true,false,true,true,true,true,"Santa Rosa"));
         for (int i=0;i<listaEmpresas.size(); i++){
            listaEmpresas.get(i).setDistancia(distance(latitud,longitud,listaEmpresas.get(i).getLatitud(),listaEmpresas.get(i).getLongitud()));
         }
@@ -147,7 +149,6 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
     }
     private void abrirMenu(){
         Intent intent= new Intent(this, VerMenuActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 

@@ -10,29 +10,21 @@ public class empresasCardviewPrincipal {
     private double latitud;
     private double longitud;
     private double distancia;
-    private boolean tieneBano;
-    private boolean aceptaTarjetaCredito;
-    private boolean deliveryPropio;
-    private boolean autoServicio;
     private String tipoLocal;
     private boolean paraServirse;
     private boolean paraLlevar;
-    private boolean aireAcondicionado;
-    private boolean estacionamiento;
-    private boolean camaras;
-    private boolean cervezas;
-    private boolean fumar;
-    private boolean musica;
-    private boolean guardia;
-    private boolean ventilador;
+    private boolean deliveryPropio;
     private boolean wifi;
+    private boolean aceptaTarjetaCredito;
+    private boolean abierCerrad;
+    private String ciudad;
 
 
 
     public empresasCardviewPrincipal() {
     }
 
-    public empresasCardviewPrincipal(Uri foto, String nombreEmpresa, String tipo, String direccion, double latitud, double longitud, double distancia, boolean tieneBano, boolean aceptaTarjetaCredito, boolean deliveryPropio, boolean autoServicio, String tipoLocal, boolean paraServirse, boolean paraLlevar, boolean aireAcondicionado, boolean estacionamiento, boolean camaras, boolean cervezas, boolean fumar, boolean musica, boolean guardia, boolean ventilador, boolean wifi) {
+    public empresasCardviewPrincipal(Uri foto, String nombreEmpresa, String tipo, String direccion, double latitud, double longitud, double distancia, String tipoLocal, boolean paraServirse, boolean paraLlevar, boolean deliveryPropio, boolean wifi, boolean aceptaTarjetaCredito, boolean abierCerrad, String ciudad) {
         this.foto = foto;
         this.nombreEmpresa = nombreEmpresa;
         this.tipo = tipo;
@@ -40,22 +32,14 @@ public class empresasCardviewPrincipal {
         this.latitud = latitud;
         this.longitud = longitud;
         this.distancia = distancia;
-        this.tieneBano = tieneBano;
-        this.aceptaTarjetaCredito = aceptaTarjetaCredito;
-        this.deliveryPropio = deliveryPropio;
-        this.autoServicio = autoServicio;
         this.tipoLocal = tipoLocal;
         this.paraServirse = paraServirse;
         this.paraLlevar = paraLlevar;
-        this.aireAcondicionado = aireAcondicionado;
-        this.estacionamiento = estacionamiento;
-        this.camaras = camaras;
-        this.cervezas = cervezas;
-        this.fumar = fumar;
-        this.musica = musica;
-        this.guardia = guardia;
-        this.ventilador = ventilador;
+        this.deliveryPropio = deliveryPropio;
         this.wifi = wifi;
+        this.aceptaTarjetaCredito = aceptaTarjetaCredito;
+        this.abierCerrad = abierCerrad;
+        this.ciudad = ciudad;
     }
 
     public Uri getFoto() {
@@ -114,38 +98,6 @@ public class empresasCardviewPrincipal {
         this.distancia = distancia;
     }
 
-    public boolean isTieneBano() {
-        return tieneBano;
-    }
-
-    public void setTieneBano(boolean tieneBano) {
-        this.tieneBano = tieneBano;
-    }
-
-    public boolean isAceptaTarjetaCredito() {
-        return aceptaTarjetaCredito;
-    }
-
-    public void setAceptaTarjetaCredito(boolean aceptaTarjetaCredito) {
-        this.aceptaTarjetaCredito = aceptaTarjetaCredito;
-    }
-
-    public boolean isDeliveryPropio() {
-        return deliveryPropio;
-    }
-
-    public void setDeliveryPropio(boolean deliveryPropio) {
-        this.deliveryPropio = deliveryPropio;
-    }
-
-    public boolean isAutoServicio() {
-        return autoServicio;
-    }
-
-    public void setAutoServicio(boolean autoServicio) {
-        this.autoServicio = autoServicio;
-    }
-
     public String getTipoLocal() {
         return tipoLocal;
     }
@@ -170,68 +122,12 @@ public class empresasCardviewPrincipal {
         this.paraLlevar = paraLlevar;
     }
 
-    public boolean isAireAcondicionado() {
-        return aireAcondicionado;
+    public boolean isDeliveryPropio() {
+        return deliveryPropio;
     }
 
-    public void setAireAcondicionado(boolean aireAcondicionado) {
-        this.aireAcondicionado = aireAcondicionado;
-    }
-
-    public boolean isEstacionamiento() {
-        return estacionamiento;
-    }
-
-    public void setEstacionamiento(boolean estacionamiento) {
-        this.estacionamiento = estacionamiento;
-    }
-
-    public boolean isCamaras() {
-        return camaras;
-    }
-
-    public void setCamaras(boolean camaras) {
-        this.camaras = camaras;
-    }
-
-    public boolean isCervezas() {
-        return cervezas;
-    }
-
-    public void setCervezas(boolean cervezas) {
-        this.cervezas = cervezas;
-    }
-
-    public boolean isFumar() {
-        return fumar;
-    }
-
-    public void setFumar(boolean fumar) {
-        this.fumar = fumar;
-    }
-
-    public boolean isMusica() {
-        return musica;
-    }
-
-    public void setMusica(boolean musica) {
-        this.musica = musica;
-    }
-
-    public boolean isGuardia() {
-        return guardia;
-    }
-
-    public void setGuardia(boolean guardia) {
-        this.guardia = guardia;
-    }
-
-    public boolean isVentilador() {
-        return ventilador;
-    }
-
-    public void setVentilador(boolean ventilador) {
-        this.ventilador = ventilador;
+    public void setDeliveryPropio(boolean deliveryPropio) {
+        this.deliveryPropio = deliveryPropio;
     }
 
     public boolean isWifi() {
@@ -240,5 +136,29 @@ public class empresasCardviewPrincipal {
 
     public void setWifi(boolean wifi) {
         this.wifi = wifi;
+    }
+
+    public boolean isAceptaTarjetaCredito() {
+        return aceptaTarjetaCredito;
+    }
+
+    public void setAceptaTarjetaCredito(boolean aceptaTarjetaCredito) {
+        this.aceptaTarjetaCredito = aceptaTarjetaCredito;
+    }
+
+    public boolean isAbierCerrad() {
+        return abierCerrad;
+    }
+
+    public void setAbierCerrad(boolean abierCerrad) {
+        this.abierCerrad = abierCerrad;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 }

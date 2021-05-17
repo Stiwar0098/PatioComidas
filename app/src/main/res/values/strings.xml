@@ -17,8 +17,18 @@
     <string name="CarviewPrincipal_Direccion">Direccion</string>
     <string name="CarviewPrincipal_Actualmente">Actualmente</string>
     <string name="CarviewPrincipal_VerMenu">Ver Menú</string>
-    <string name="CarviewPrincipal_Abierto">Abierto</string>
-    <string name="CarviewPrincipal_Cerrado">Cerrado</string>
+    <string name="Abierto">Abierto</string>
+    <string name="Cerrado">Cerrado</string>
+    <string name="CarviewPrincipal_Servicios">Servicios</string>
+    <string name="Ciudad">Ciudad</string>
+    <string name="servicios_restaurant">Indica que atiende en un restaurant</string>
+    <string name="servicios_quisco">Indica que atiende en un quiosco</string>
+    <string name="servicios_carpa">Indica que atiende en una carpa</string>
+    <string name="servicios_para_servirse">Indica que se puede comer en el local</string>
+    <string name="servicios_para_llevar">Indica que puede hacer un pedido y luego ir a retirar</string>
+    <string name="servicios_delivery">Indica que ofrece servicio adomicilo</string>
+    <string name="servicios_wifi">Indica que ofrece wifi</string>
+    <string name="servicios_credito">Indica que acepta tarjetas de credito</string>
 
 
 </resources>

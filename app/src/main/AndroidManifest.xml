@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VerMenuActivity"></activity>
+        <activity android:name=".infoServicios" />
+        <activity android:name=".VerMenuActivity" />
         <activity android:name=".PrincipalActivity" />
         <activity android:name=".activity_registro" />
         <activity android:name=".LoginActivity">
