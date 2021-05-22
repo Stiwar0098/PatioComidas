@@ -13,8 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".VerMenuDeCategoria"></activity>
+        <activity android:name=".adaptadores.adapterCardviewCategoria" />
+        <activity android:name=".FiltrarRestaurantes" />
         <activity android:name=".infoServicios" />
-        <activity android:name=".VerMenuActivity" />
+        <activity android:name=".VerCategoriaActivity" />
         <activity android:name=".PrincipalActivity" />
         <activity android:name=".activity_registro" />
         <activity android:name=".LoginActivity">

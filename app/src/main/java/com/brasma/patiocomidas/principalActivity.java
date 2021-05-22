@@ -12,10 +12,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.brasma.patiocomidas.adaptadores.adapterCarviewPrincipal;
@@ -30,13 +33,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.maps.android.SphericalUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrincipalActivity extends AppCompatActivity implements View.OnClickListener {
+public class PrincipalActivity extends AppCompatActivity implements View.OnClickListener, FiltrarRestaurantes.finalizoDialogFiltrar {
 
     private RecyclerView recyclerViewEmpresas;
     private adapterCarviewPrincipal adapterEmpresas;
@@ -46,18 +50,22 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
     private GoogleSignInClient mGoogleSignInClient;
     private Button btnCerrarSesion;
     private FusedLocationProviderClient ubicacion;
+    private ImageButton btnFiltrar;
     private double latitud;
     private double longitud;
+    private BottomSheetDialog botBoottomSheetDialog;
+    Spinner spinnerFiltrar;
+    List<String> listCiudades;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
+        setContentView(R.layout.consumidor_activity_principal);
         context=this;
         Procesos.cargandoIniciar(this);
         txtBuscar=(TextInputEditText)findViewById(R.id.txtBuscar_Principal);
         btnCerrarSesion=(Button)findViewById(R.id.btnCerrarSesion_Principal);
-
+        btnFiltrar=(ImageButton)findViewById(R.id.btnFiltrar_Principal);
         //cerrar sesion
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -78,15 +86,15 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void afterTextChanged(Editable s) {
                 if(!s.toString().equals("")){
-                    filtrar(s.toString());
+                    filtrar(s.toString(),"");
                 }else{
                     cargarRecycler(listaEmpresas);
                 }
             }
         });
         btnCerrarSesion.setOnClickListener(this);
+        btnFiltrar.setOnClickListener(this);
         cargarUbicacion();
-        Procesos.cargandoDetener();
     }
 
 
@@ -95,16 +103,17 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
     private void cargarRecycler(List<empresasCardviewPrincipal> lista){
         // crear lista de carview dentro del recycleview
         recyclerViewEmpresas = (RecyclerView) findViewById(R.id.recycler_Principal);
-        recyclerViewEmpresas.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewEmpresas.setLayoutManager(new  LinearLayoutManager(this));
         adapterEmpresas = new adapterCarviewPrincipal(lista);
         recyclerViewEmpresas.setAdapter(adapterEmpresas);
         adapterEmpresas.setOnClickListener2(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 empresasCardviewPrincipal us = listaEmpresas.get(recyclerViewEmpresas.getChildAdapterPosition(v));
-                abrirMenu();
+                abrirCategoria();
             }
         });
+        Procesos.cargandoDetener();
     }
 
     private void cargarListadoEmpresas() {
@@ -147,16 +156,22 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         distance1=(distance1+distance2)/2.0;
         return distance1;
     }
-    private void abrirMenu(){
-        Intent intent= new Intent(this, VerMenuActivity.class);
+    private void abrirCategoria(){
+        Intent intent= new Intent(this, VerCategoriaActivity.class);
         startActivity(intent);
     }
 
-    private void filtrar(String buscar){
+    private void filtrar(String buscar, String ciudad){
         List<empresasCardviewPrincipal> aux2=new ArrayList<>();
         for (empresasCardviewPrincipal aux:listaEmpresas) {
             if(aux.getNombreEmpresa().toLowerCase().contains(buscar.toLowerCase())){
-                aux2.add(aux);
+                if (!ciudad.isEmpty()){
+                    if (aux.getCiudad().toLowerCase().equals(ciudad.toLowerCase())){
+                        aux2.add(aux);
+                    }
+                }else{
+                    aux2.add(aux);
+                }
             }
         }
         cargarRecycler(aux2);
@@ -173,6 +188,46 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
             case R.id.btnCerrarSesion_Principal:
                 cerrarSesion();
                 break;
+            case R.id.btnFiltrar_Principal:
+                    abrirFiltrar();
+                break;
+        }
+    }
+
+    private void abrirFiltrar(){
+        botBoottomSheetDialog=new BottomSheetDialog(PrincipalActivity.this, R.style.BottomSheetTheme);
+
+        View sheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.consumidor_dialog_filtrar_res,
+                (LinearLayout) findViewById(R.id.bottom_sheetContainer));
+
+        spinnerFiltrar=(Spinner)sheetView.findViewById(R.id.spinnerCiudad_FiltrarPrincipal);
+        sheetView.findViewById(R.id.btnFiltrar_FiltrarRestaurant).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String aux =spinnerFiltrar.getSelectedItem().toString();
+                if(!aux.equals("Seleccione")){
+                    filtrar("",aux);
+                }else{
+                    Toast.makeText(PrincipalActivity.this, "Seleccione una ciudad", Toast.LENGTH_SHORT).show();
+                }
+                botBoottomSheetDialog.dismiss();
+            }
+        });
+        botBoottomSheetDialog.setContentView(sheetView);
+        cargarCiudadesSpinner();
+        botBoottomSheetDialog.show();
+    }
+    public void cargarCiudadesSpinner(){
+        listCiudades= new ArrayList<>();
+        listCiudades.add("Seleccione");
+        listCiudades.add("Huaquillas");
+        listCiudades.add("Machala");
+        listCiudades.add("Santa Rosa");
+        ArrayAdapter<String> listaCiudades2=new ArrayAdapter<String>(context,R.layout.consumidor_item_spinner,listCiudades);
+        if (listaCiudades2!=null){
+            spinnerFiltrar.setAdapter(listaCiudades2);
+        }else{
+            Toast.makeText(context, "null", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -191,5 +246,11 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         Intent intent= new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    @Override
+    public void filtrado(String ciudad) {
+        Toast.makeText(context, ciudad, Toast.LENGTH_SHORT).show();
+        filtrar("",ciudad);
     }
 }

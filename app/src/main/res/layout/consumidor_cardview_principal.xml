@@ -35,7 +35,7 @@
                 <ImageView
                     android:id="@+id/imageView_CarviewPrincipal"
                     android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_height="75dp"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/ic_launcher_foreground"
@@ -58,7 +58,6 @@
                             android:id="@+id/lblNombreEmpresa_CardviewPrincipal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:gravity="center_vertical"
                             android:text="text"
                             android:textStyle="bold" />
@@ -67,22 +66,13 @@
                             android:id="@+id/lblTipoEmpresa_CarviewPrincipal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:text="TextView" />
-
-                        <TextView
-                            android:id="@+id/textView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="@string/Ciudad" />
 
                         <TextView
                             android:id="@+id/lblDireccionEmpresa_CarviewPrincipal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_marginTop="10dp"
                             android:text="TextView"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -100,7 +90,6 @@
                             android:id="@+id/textView8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
                             android:gravity="center"
                             android:text="@string/CarviewPrincipal_Actualmente"
                             android:visibility="visible" />

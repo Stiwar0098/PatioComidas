@@ -37,7 +37,13 @@ public class Procesos extends AppCompatActivity {
     }
 
     public static void cargandoDetener() {
-        cargando.dismiss();
+
+        try{
+            cargando.dismiss();
+        }catch (Exception e){
+
+        }
+
     }
 
     public static String controlarDecimales(double numDecimal) {

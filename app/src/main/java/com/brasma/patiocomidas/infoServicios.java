@@ -9,6 +9,6 @@ public class infoServicios extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info_servicios);
+        setContentView(R.layout.consumidor_activity_info_servicios);
     }
 }

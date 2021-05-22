@@ -2,31 +2,19 @@ package com.brasma.patiocomidas.adaptadores;
 
 import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.brasma.patiocomidas.PrincipalActivity;
 import com.brasma.patiocomidas.R;
-import com.brasma.patiocomidas.VerMenuActivity;
-import com.brasma.patiocomidas.activity_registro;
 import com.brasma.patiocomidas.entidades.empresasCardviewPrincipal;
 import com.brasma.patiocomidas.infoServicios;
-import com.bumptech.glide.Glide;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.maps.android.SphericalUtil;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
@@ -59,7 +47,7 @@ public class adapterCarviewPrincipal extends RecyclerView.Adapter<adapterCarview
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_principal, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.consumidor_cardview_principal, parent, false);
         //context = parent.getContext();
         view.setOnClickListener(this);
         return new ViewHolder(view);

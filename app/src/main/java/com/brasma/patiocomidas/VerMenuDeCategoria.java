@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class VerMenuActivity extends AppCompatActivity {
+public class VerMenuDeCategoria extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ver_menu);
+        setContentView(R.layout.consumidor_activity_ver_menu_de_categoria);
     }
 }

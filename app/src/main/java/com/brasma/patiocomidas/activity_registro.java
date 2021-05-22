@@ -16,13 +16,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
 public class activity_registro extends AppCompatActivity implements View.OnClickListener {
@@ -31,23 +31,19 @@ public class activity_registro extends AppCompatActivity implements View.OnClick
     private Button btnRemove;
     private ImageButton btnMostrarContrseña;
     private GoogleSignInClient mGoogleSignInClient;
-    private TextView lblContraseña;
-    private EditText txtContraseña;
+    private TextInputLayout txtContraseña,txtNombre,txtCorreo;
     private ImageView foto;
-    private EditText txtNombre;
-    private EditText txtCorreo;
     boolean accesoRapido;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
+        setContentView(R.layout.ingreso_activity_registro);
         btnCerrarSesion= (Button)findViewById(R.id.btnCerrarSesion);
         btnRemove= (Button)findViewById(R.id.btnRemove);
-        lblContraseña=(TextView) findViewById(R.id.lblContraseña);
-        txtContraseña=(EditText)findViewById(R.id.txtContraseña_Registro);
+        txtContraseña=(TextInputLayout)findViewById(R.id.txtContraseña_Registro);
         foto=(ImageView)findViewById(R.id.imageView_Registro);
-        txtNombre=(EditText)findViewById(R.id.txtNombre_Registro);
-        txtCorreo=(EditText)findViewById(R.id.txtCorreo_Registro);
+        txtNombre=(TextInputLayout)findViewById(R.id.txtNombre_Registro);
+        txtCorreo=(TextInputLayout)findViewById(R.id.txtCorreo_Registro);
         btnMostrarContrseña=(ImageButton) findViewById(R.id.btnMostrarContraseña_Registrar);
 
         //cerrar sesion y remover sesion
@@ -59,10 +55,10 @@ public class activity_registro extends AppCompatActivity implements View.OnClick
         //obtener datos del correo
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
-           txtNombre.setText(acct.getDisplayName()) ;
+           txtNombre.getEditText().setText(acct.getDisplayName()) ;
             String personGivenName = acct.getGivenName();
             String personFamilyName = acct.getFamilyName();
-            txtCorreo.setText(acct.getEmail());
+            txtCorreo.getEditText().setText(acct.getEmail());
             String personId = acct.getId();
             Uri personPhoto = acct.getPhotoUrl();
             try{// verificar si el correo tiene foto
@@ -80,10 +76,10 @@ public class activity_registro extends AppCompatActivity implements View.OnClick
             public boolean onTouch(View v, MotionEvent event) {
                 switch ( event.getAction() ) {
                     case MotionEvent.ACTION_DOWN:
-                        txtContraseña.setInputType(InputType.TYPE_CLASS_TEXT);
+                        txtContraseña.getEditText().setInputType(InputType.TYPE_CLASS_TEXT);
                         break;
                     case MotionEvent.ACTION_UP:
-                        txtContraseña.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        txtContraseña.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         break;
                 }
                 return true;
@@ -92,11 +88,10 @@ public class activity_registro extends AppCompatActivity implements View.OnClick
 
         accesoRapido=getIntent().getBooleanExtra("Acceso rapido",false);
         if(accesoRapido){
-            lblContraseña.setVisibility(View.GONE);
             txtContraseña.setVisibility(View.GONE);
             btnMostrarContrseña.setVisibility(View.GONE);
-            txtNombre.setFocusableInTouchMode(false);
-            txtCorreo.setFocusableInTouchMode(false);
+            txtNombre.getEditText().setFocusableInTouchMode(false);
+            txtCorreo.getEditText().setFocusableInTouchMode(false);
         }
     }
 

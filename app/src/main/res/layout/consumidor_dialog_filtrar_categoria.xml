@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheetContainer"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_background"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text= "@string/Filtrar" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RadioButton
+            android:id="@+id/rdbCategoria_FiltrarCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:freezesText="false"
+            android:gravity="center"
+            android:text="@string/categoria"
+            android:typeface="normal"
+            android:verticalScrollbarPosition="defaultPosition" />
+
+        <RadioButton
+            android:id="@+id/rdbMenu_FiltrarCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/menu" />
+    </RadioGroup>
+
+</LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:id="@+id/bottom_sheetContainer"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_background"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Filtrar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Por_ciudad" />
+
+        <Spinner
+            android:id="@+id/spinnerCiudad_FiltrarPrincipal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnFiltrar_FiltrarRestaurant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Filtrar" />
+
+</LinearLayout>
