@@ -85,7 +85,6 @@ public class activity_registro extends AppCompatActivity implements View.OnClick
                 return true;
             }
         });
-
         accesoRapido=getIntent().getBooleanExtra("Acceso rapido",false);
         if(accesoRapido){
             txtContraseña.setVisibility(View.GONE);

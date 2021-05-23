@@ -1,29 +1,21 @@
 package com.brasma.patiocomidas.adaptadores;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.brasma.patiocomidas.R;
-import com.brasma.patiocomidas.entidades.empresasCardviewPrincipal;
-import com.brasma.patiocomidas.infoServicios;
-import com.squareup.picasso.Picasso;
+import com.brasma.patiocomidas.entidades.Categorias;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class adapterCardviewCategoria extends RecyclerView.Adapter<adapterCardviewCategoria.ViewHolder> implements View.OnClickListener {
-    public List<String> listaEmpresas;
+    public List<Categorias> listaEmpresas;
     private View.OnClickListener listener;
     public static Context context;
 
@@ -32,7 +24,7 @@ public class adapterCardviewCategoria extends RecyclerView.Adapter<adapterCardvi
     public void setOnClickListener2(View.OnClickListener listener) {
         this.listener = listener;
     }
-    public adapterCardviewCategoria(List<String> listaEmpresa) {
+    public adapterCardviewCategoria(List<Categorias> listaEmpresa) {
         this.listaEmpresas = listaEmpresa;
     }
 
@@ -73,8 +65,8 @@ public class adapterCardviewCategoria extends RecyclerView.Adapter<adapterCardvi
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String op=listaEmpresas.get(position);
-        holder.nombre.setText(op);
+        Categorias op=listaEmpresas.get(position);
+        holder.nombre.setText(op.getNombre());
     }
 
     @Override

@@ -1,11 +1,9 @@
 package com.brasma.patiocomidas.adaptadores;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,16 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.brasma.patiocomidas.R;
-import com.brasma.patiocomidas.entidades.empresasCardviewPrincipal;
-import com.brasma.patiocomidas.infoServicios;
+import com.brasma.patiocomidas.entidades.Platos;
 import com.squareup.picasso.Picasso;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 public class adapterCarviewPlatos extends RecyclerView.Adapter<adapterCarviewPlatos.ViewHolder> implements View.OnClickListener {
 
-    public  List<String> listaEmpresas;
+    public  List<Platos> listaEmpresas;
     private View.OnClickListener listener;
     public static Context context;
 
@@ -32,7 +28,7 @@ public class adapterCarviewPlatos extends RecyclerView.Adapter<adapterCarviewPla
         this.listener = listener;
     }
 
-    public adapterCarviewPlatos(List<String> listaEmpresa) {
+    public adapterCarviewPlatos(List<Platos> listaEmpresa) {
         this.listaEmpresas = listaEmpresa;
     }
 
@@ -54,12 +50,16 @@ public class adapterCarviewPlatos extends RecyclerView.Adapter<adapterCarviewPla
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView nombre;
+        private TextView nombre,descripcion,precio;
+        private ImageView foto;
 
         public ViewHolder(View itemView) {
             super(itemView);
             context = itemView.getContext();
             nombre= (TextView) itemView.findViewById(R.id.lblNombrePlato_cardviewPlato);
+            descripcion=(TextView)itemView.findViewById(R.id.lblDescripcionPlato_CardviewPlato);
+            precio=(TextView)itemView.findViewById(R.id.lblPrecio_cardviewPlato);
+            foto=(ImageView)itemView.findViewById(R.id.imagePlato_cardviewPlato);
         }
 
         /**
@@ -74,9 +74,11 @@ public class adapterCarviewPlatos extends RecyclerView.Adapter<adapterCarviewPla
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String op=listaEmpresas.get(position);
-        //Picasso.get().load(op.getFoto()).into(holder.foto);
-        holder.nombre.setText(op);
+        Platos op=listaEmpresas.get(position);
+        Picasso.get().load(op.getFoto()).into(holder.foto);
+        holder.nombre.setText(op.getNombre());
+        holder.descripcion.setText(op.getDescripcion());
+        holder.precio.setText(op.getPrecio()+"");
     }
 
     @Override

@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.brasma.patiocomidas.adaptadores.adapterCarviewPrincipal;
 import com.brasma.patiocomidas.entidades.Procesos;
-import com.brasma.patiocomidas.entidades.empresasCardviewPrincipal;
+import com.brasma.patiocomidas.entidades.Restaurante;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -44,7 +44,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
 
     private RecyclerView recyclerViewEmpresas;
     private adapterCarviewPrincipal adapterEmpresas;
-    private List<empresasCardviewPrincipal> listaEmpresas;
+    private List<Restaurante> listaEmpresas;
     private TextInputEditText txtBuscar;
     private Context context;
     private GoogleSignInClient mGoogleSignInClient;
@@ -100,7 +100,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
 
 
 
-    private void cargarRecycler(List<empresasCardviewPrincipal> lista){
+    private void cargarRecycler(List<Restaurante> lista){
         // crear lista de carview dentro del recycleview
         recyclerViewEmpresas = (RecyclerView) findViewById(R.id.recycler_Principal);
         recyclerViewEmpresas.setLayoutManager(new  LinearLayoutManager(this));
@@ -109,7 +109,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         adapterEmpresas.setOnClickListener2(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                empresasCardviewPrincipal us = listaEmpresas.get(recyclerViewEmpresas.getChildAdapterPosition(v));
+                Restaurante us = listaEmpresas.get(recyclerViewEmpresas.getChildAdapterPosition(v));
                 abrirCategoria();
             }
         });
@@ -118,9 +118,9 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
 
     private void cargarListadoEmpresas() {
         listaEmpresas=new ArrayList<>();
-        listaEmpresas.add(new empresasCardviewPrincipal(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"Mi covacha","Restaurant","Av la republica y 24 de mayo",-3.4729557,-80.2371387,0.0,"restaurant",true,true,true,true,true,true,"Huaquillas"));
-        listaEmpresas.add(new empresasCardviewPrincipal(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"cosecha","Restaurant","Av la republica y 24 de mayo",-3.4828109002677876,-80.225047217398,0.0,"quiosco",true,true,true,true,false,false,"Machala"));
-        listaEmpresas.add(new empresasCardviewPrincipal(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"Conver","Restaurant","Av la republica y 24 de mayo",-3.4729557,-80.2371387,0.0,"carpa",true,false,true,true,true,true,"Santa Rosa"));
+        listaEmpresas.add(new Restaurante(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"Mi covacha","Restaurant","Av la republica y 24 de mayo",-3.4729557,-80.2371387,0.0,"restaurant",true,true,true,true,true,true,"Huaquillas"));
+        listaEmpresas.add(new Restaurante(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"cosecha","Restaurant","Av la republica y 24 de mayo",-3.4828109002677876,-80.225047217398,0.0,"quiosco",true,true,true,true,false,false,"Machala"));
+        listaEmpresas.add(new Restaurante(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"Conver","Restaurant","Av la republica y 24 de mayo",-3.4729557,-80.2371387,0.0,"carpa",true,false,true,true,true,true,"Santa Rosa"));
         for (int i=0;i<listaEmpresas.size(); i++){
            listaEmpresas.get(i).setDistancia(distance(latitud,longitud,listaEmpresas.get(i).getLatitud(),listaEmpresas.get(i).getLongitud()));
         }
@@ -162,8 +162,8 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void filtrar(String buscar, String ciudad){
-        List<empresasCardviewPrincipal> aux2=new ArrayList<>();
-        for (empresasCardviewPrincipal aux:listaEmpresas) {
+        List<Restaurante> aux2=new ArrayList<>();
+        for (Restaurante aux:listaEmpresas) {
             if(aux.getNombreEmpresa().toLowerCase().contains(buscar.toLowerCase())){
                 if (!ciudad.isEmpty()){
                     if (aux.getCiudad().toLowerCase().equals(ciudad.toLowerCase())){

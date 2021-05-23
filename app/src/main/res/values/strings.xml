@@ -35,6 +35,8 @@
     <string name="servicios_credito">Indica que acepta tarjetas de credito.</string>
     <string name="categoria">Categoria</string>
     <string name="menu">Todo el menú</string>
+    <string name="facebook_app_id">447269063171323</string>
+    <string name="fb_login_protocol_scheme">fb447269063171323</string>
 
 
 </resources>

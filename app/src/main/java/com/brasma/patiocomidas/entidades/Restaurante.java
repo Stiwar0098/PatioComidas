@@ -2,7 +2,7 @@ package com.brasma.patiocomidas.entidades;
 
 import android.net.Uri;
 
-public class empresasCardviewPrincipal {
+public class Restaurante {
     private Uri foto;
     private String nombreEmpresa;
     private String tipo;
@@ -21,10 +21,10 @@ public class empresasCardviewPrincipal {
 
 
 
-    public empresasCardviewPrincipal() {
+    public Restaurante() {
     }
 
-    public empresasCardviewPrincipal(Uri foto, String nombreEmpresa, String tipo, String direccion, double latitud, double longitud, double distancia, String tipoLocal, boolean paraServirse, boolean paraLlevar, boolean deliveryPropio, boolean wifi, boolean aceptaTarjetaCredito, boolean abierCerrad, String ciudad) {
+    public Restaurante(Uri foto, String nombreEmpresa, String tipo, String direccion, double latitud, double longitud, double distancia, String tipoLocal, boolean paraServirse, boolean paraLlevar, boolean deliveryPropio, boolean wifi, boolean aceptaTarjetaCredito, boolean abierCerrad, String ciudad) {
         this.foto = foto;
         this.nombreEmpresa = nombreEmpresa;
         this.tipo = tipo;

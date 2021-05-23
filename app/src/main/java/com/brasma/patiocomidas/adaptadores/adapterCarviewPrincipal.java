@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.brasma.patiocomidas.R;
-import com.brasma.patiocomidas.entidades.empresasCardviewPrincipal;
+import com.brasma.patiocomidas.entidades.Restaurante;
 import com.brasma.patiocomidas.infoServicios;
 import com.squareup.picasso.Picasso;
 
@@ -22,7 +22,7 @@ import java.util.List;
 
 public class adapterCarviewPrincipal extends RecyclerView.Adapter<adapterCarviewPrincipal.ViewHolder> implements View.OnClickListener {
 
-    public static List<empresasCardviewPrincipal> listaEmpresas;
+    public static List<Restaurante> listaEmpresas;
     private View.OnClickListener listener;
     public static Context context;
 
@@ -32,7 +32,7 @@ public class adapterCarviewPrincipal extends RecyclerView.Adapter<adapterCarview
         this.listener = listener;
     }
 
-    public adapterCarviewPrincipal(List<empresasCardviewPrincipal> listaEmpresa) {
+    public adapterCarviewPrincipal(List<Restaurante> listaEmpresa) {
         this.listaEmpresas = listaEmpresa;
     }
 
@@ -100,7 +100,7 @@ public class adapterCarviewPrincipal extends RecyclerView.Adapter<adapterCarview
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        empresasCardviewPrincipal op=listaEmpresas.get(position);
+        Restaurante op=listaEmpresas.get(position);
         double distancia=op.getDistancia();
         DecimalFormat df = new DecimalFormat(".#");
         Picasso.get().load(op.getFoto()).into(holder.foto);

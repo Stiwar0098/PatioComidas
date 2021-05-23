@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +17,8 @@ import android.widget.RadioButton;
 
 import com.brasma.patiocomidas.adaptadores.adapterCardviewCategoria;
 import com.brasma.patiocomidas.adaptadores.adapterCarviewPlatos;
+import com.brasma.patiocomidas.entidades.Categorias;
+import com.brasma.patiocomidas.entidades.Platos;
 import com.brasma.patiocomidas.entidades.Procesos;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
@@ -25,8 +28,8 @@ import java.util.List;
 
 public class VerCategoriaActivity extends AppCompatActivity implements View.OnClickListener{
     private RecyclerView recyclerViewCategoria;
-    private List<String> listaCategoria;
-    private List<String> listaPlatos;
+    private List<Categorias> listaCategoria;
+    private List<Platos> listaPlatos;
     private ImageButton btnFiltrar;
     private BottomSheetDialog botBoottomSheetDialog;
     private RadioButton radioButtonCategoria,radioButtonMenu;
@@ -77,35 +80,36 @@ public class VerCategoriaActivity extends AppCompatActivity implements View.OnCl
 
     private void cargarListas() {
         listaCategoria=new ArrayList<>();
-        listaCategoria.add("Embutidos");
-        listaCategoria.add("Gaseosas");
-        listaCategoria.add("Almuerzos");
-        listaCategoria.add("Merienda");
+        listaCategoria.add(new Categorias("Embutidos"));
+        listaCategoria.add(new Categorias("Gaseosas"));
+        listaCategoria.add(new Categorias("Almuerzos"));
+        listaCategoria.add(new Categorias("Merienda"));
         listaPlatos=new ArrayList<>();
-        listaPlatos.add("arroz");
-        listaPlatos.add("ceviche");
-        listaPlatos.add("concha");
-        listaPlatos.add("fresco");
+        listaPlatos.add(new Platos(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"arroz","muy rico","Embutidos",5.5));
+        listaPlatos.add(new Platos(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"seco","muy rico","Almuerzos",50));
+        listaPlatos.add(new Platos(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"menestra","muy rico","Merienda",3.75));
+        listaPlatos.add(new Platos(Uri.parse("https://img.goraymi.com/2018/05/07/9f504b99ce05011a601bb9572b09bd2b_lg.jpg"),"frejol","muy rico","Gaseosas",2));
     }
 
     private void filtrar(String buscar){
         //Procesos.cargandoIniciar(this);
-        List<String> aux2=new ArrayList<>();
+        List<Categorias> aux2=new ArrayList<>();
+        List<Platos> aux3=new ArrayList<>();
         if(isCategoria){
-            for (String aux:listaCategoria) {
-                if(aux.toLowerCase().contains(buscar.toLowerCase())){
+            for (Categorias aux:listaCategoria) {
+                if(aux.getNombre().toLowerCase().contains(buscar.toLowerCase())){
                     aux2.add(aux);
                 }
             }
             cargarRecycler(aux2,null);
         }else{
             aux2=new ArrayList<>();
-            for (String aux:listaPlatos) {
-                if(aux.toLowerCase().contains(buscar.toLowerCase())){
-                    aux2.add(aux);
+            for (Platos aux:listaPlatos) {
+                if(aux.getNombre().toLowerCase().contains(buscar.toLowerCase())){
+                    aux3.add(aux);
                 }
             }
-            cargarRecycler(null,aux2);
+            cargarRecycler(null,aux3);
         }
     }
     private void cargarRecyclerCategoria() {
@@ -161,7 +165,7 @@ public class VerCategoriaActivity extends AppCompatActivity implements View.OnCl
     }
     adapterCardviewCategoria adapterCategoria;
     adapterCarviewPlatos adapterPlatos;
-    private void cargarRecycler(List<String> listaCategoria2,List<String> listaPlatos2){
+    private void cargarRecycler(List<Categorias> listaCategoria2,List<Platos> listaPlatos2){
         // crear lista de carview dentro del recycleview
         recyclerViewCategoria=(RecyclerView)findViewById(R.id.recyclerView_VerCtegoria);
         recyclerViewCategoria.setLayoutManager(new LinearLayoutManager(this));
